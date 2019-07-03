@@ -6,6 +6,7 @@
 package mx.com.pydee.ejemploqr;
 
 import com.google.zxing.WriterException;
+import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,11 +19,13 @@ public class Ventana extends JFrame {
     
     public Ventana() throws WriterException {
         GeneraQR generaQR = new GeneraQR();
-        ImageIcon icono = new ImageIcon(generaQR.crearQR("https://medium.com/el-acordeon-del-programador", 300, 300));
+        BufferedImage imagen = generaQR.crearQR("https://medium.com/el-acordeon-del-programador", 300, 300);
+        ImageIcon icono = new ImageIcon(imagen);
         JLabel etiqueta = new JLabel("");
         
         etiqueta.setIcon(icono);
         
+        this.setIconImage(imagen);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Ejemplo de codigo QR");
         this.getContentPane().add(etiqueta);
